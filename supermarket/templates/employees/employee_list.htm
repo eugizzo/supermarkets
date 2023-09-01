@@ -1,0 +1,57 @@
+
+
+    {% extends '../base/sidebar.htm' %} 
+
+{% block menu %} Employees {% endblock %}
+
+{% block contents%}
+
+<div class="card mb-4 m-5">
+  <div class="card-header " style="display: inline;">
+    
+    <i class="fas fa-table me-1"></i>
+    
+    Employees
+    <div style="display: flex; justify-content: end;">
+    <a href="../addCategory" ><button type="button" class="btn  btn-block mb-1 text-white " style="background-color :#f08024; font-weight: bold;" >
+        <i class="fas fa-plus me-1"></i>
+        Add Employee
+      </button></a></div>
+  </div>
+  <div class="card-body">
+    <table id="datatablesSimple">
+      <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+          
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Employee Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Actions</th>
+        </tr>
+      </tfoot>
+      <tbody>
+        {% for employee in employees %}
+        <tr>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.phone_number }}</td>
+          <td>{{ employee.email }}</td>
+          <td>
+            <a href="{% url 'delete_employee' employee.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+            <a href="{% url 'delete_employee' employee.id %}"><button type="button" class="btn btn-success">Edit</button></a>
+        </td>
+        </tr>
+        {% endfor %}
+ 
+      </tbody>
+    </table>
+  </div>
+</div>
+{%endblock%}

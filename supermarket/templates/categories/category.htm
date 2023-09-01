@@ -1,0 +1,56 @@
+{% extends '../base/sidebar.htm' %} 
+{% block menu %} Category {% endblock %}
+
+
+{% block contents %}
+
+<div class="card mb-4 m-5">
+  <div class="card-header" style="display: inline">
+    <i class="fas fa-table me-1"></i>
+
+    Categories
+    <div style="display: flex; justify-content: end">
+      <a href="../addCategory"
+        ><button
+          type="button"
+          class="btn btn-block mb-1 text-white"
+          style="background-color: #f08024; font-weight: bold"
+        >
+          <i class="fas fa-plus me-1"></i>
+          Add Category
+        </button></a
+      >
+    </div>
+  </div>
+  <div class="card-body">
+    <table id="datatablesSimple">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Categories Name</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Name</th>
+          <th>Categories Name</th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Food</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Drink</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Electonics</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{%endblock%}
