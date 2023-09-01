@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Employee
+from .models import Employee,Category
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -15,9 +15,17 @@ def dashboardHomePage(request):
     return render(request, 'dashboard/home.htm')
 
 def Categories(request):
-    return render(request, 'categories/category.htm')
+    Categories = Category.objects.all()
+    if request.method == 'POST':
+        name = request.POST['name']
+        new_category = Category(name=name)
+        new_category.save()
+    return render(request, 'categories/category.htm', {'Categories': Categories})
+    
 
-def addCategory(request):
+
+def addEmployee(request):
+    employees = Employee.objects.all()
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
@@ -25,11 +33,11 @@ def addCategory(request):
         password = request.POST['password']
         new_employee = Employee(name=name, email=email,phone_number=phone_number,password=password)
         new_employee.save()
-    return render(request, 'categories/addCategory.htm')
+    return render(request, 'employees/employee_list.htm', {'employees': employees})
+        
 
-def employee_list(request):
-    employees = Employee.objects.all()
-    return render(request, 'employees/employee_list.htm', {'employees': employees})   
+    
+  
 
 def delete_employee(request, employee_id):
     employee = get_object_or_404(Employee, id=employee_id)
