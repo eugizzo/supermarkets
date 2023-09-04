@@ -3,7 +3,12 @@
 
 
 	{% block contents%}
-
+  
+  <style >
+  html{
+    scroll-behavior: smooth;
+  }
+  </style>
     <!--PreLoader-->
  <div class="loader">
     <div class="loader-inner">
@@ -31,40 +36,18 @@
               <ul>
                 <li class="current-list-item">
                   <a href="#">Home</a>
-                  <ul class="sub-menu">
-                    <li><a href="index.html">Static Home</a></li>
-                    <li><a href="index_2.html">Slider Home</a></li>
-                  </ul>
+                 
                 </li>
-                <li><a href="about.html">About</a></li>
+                
+              
                 <li>
-                  <a href="#">Pages</a>
-                  <ul class="sub-menu">
-                    <li><a href="404.html">404 page</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="checkout.html">Check Out</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="news.html">News</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                  </ul>
+                  <a href="#news">News</a>
+                
                 </li>
+                <li><a href="#">Contact</a></li>
                 <li>
-                  <a href="news.html">News</a>
-                  <ul class="sub-menu">
-                    <li><a href="news.html">News</a></li>
-                    <li><a href="single-news.html">Single News</a></li>
-                  </ul>
-                </li>
-                <li><a href="contact.html">Contact</a></li>
-                <li>
-                  <a href="shop.html">Shop</a>
-                  <ul class="sub-menu">
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="checkout.html">Check Out</a></li>
-                    <li><a href="single-product.html">Single Product</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                  </ul>
+                  <a href="#">Shop</a>
+                 
                 </li>
                 <li>
                   <div class="header-icons">
@@ -241,7 +224,7 @@
   <!-- end product section -->
 
   <!-- advertisement section -->
-  <div class="abt-section mb-150">
+  <!-- <div class="abt-section mb-150">
     <div class="container">
       <h2
         style="display: flex; justify-content: center; padding-bottom: 15px"
@@ -278,11 +261,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- end advertisement section -->
 
   <!-- shop banner -->
-  <section class="shop-banner">
+  <!-- <section class="shop-banner">
     <div class="container">
       <h3>
         December sale is on! <br />
@@ -296,11 +279,11 @@
       </div>
       <a href="shop.html" class="cart-btn btn-lg">Shop Now</a>
     </div>
-  </section>
+  </section> -->
   <!-- end shop banner -->
 
   <!-- latest news -->
-  <div class="latest-news pt-150 pb-150">
+  <div class="latest-news pt-150 pb-150 " id="news">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2 text-center">

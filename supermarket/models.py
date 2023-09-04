@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 # Create your models here.
 
 
@@ -27,6 +27,8 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField()
     supply=models.ForeignKey(Supply, on_delete=models.CASCADE)
     employee=models.ForeignKey(Employee, on_delete=models.CASCADE)
+    # image = models.ImageField(upload_to='media/', default='images.jpeg')
+    # date = models.DateTimeField(default='2023-01-01')
       
 class Customer(models.Model):
     Customer_name = models.CharField(max_length=100)
@@ -34,13 +36,7 @@ class Customer(models.Model):
     phone_number = models.DecimalField(max_digits=10, decimal_places=2)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
-class Order(models.Model):
-    products = models.ManyToManyField(Product, through='OrderItem')
-    customer_name = models.CharField(max_length=100)
-    order_date = models.DateTimeField(auto_now_add=True)
 
-class OrderItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
+
+
 
