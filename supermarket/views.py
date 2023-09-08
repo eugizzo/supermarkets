@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Employee,Category,Supply,Product
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ProductForm
+from .forms import ProductForm,CategoryForm,employeeForm,supplyForm
 # Create your views here.
 
 def home(request):
@@ -45,6 +45,24 @@ def delete_category(request, category_id):
         product.delete()
         return redirect('category')
 
+def update_category(request, category_id):
+    category = get_object_or_404(Category, pk=category_id)
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect('category')
+
+    else:
+        form = CategoryForm(instance=category)
+
+    return render(request, 'categories/update_category.htm', {'form': form})
+
+
+
+
+
 def supply(request):
     Supplies = Supply.objects.all()
     if request.method == 'POST':
@@ -60,6 +78,22 @@ def delete_supply(request, supply_id):
     if supplies :
         supplies .delete()
         return redirect('supply')
+
+def update_supply(request, supply_id):
+    supply = get_object_or_404(Supply, pk=supply_id)
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance=supply)
+        if form.is_valid():
+            form.save()
+            return redirect('supply')
+
+    else:
+        form = supplyForm(instance=supply)
+
+    return render(request, 'supplies/update_supply.htm', {'form': form})
+
+
 
 def addEmployee(request):
     employees = Employee.objects.all()
@@ -77,7 +111,22 @@ def delete_employee(request, employee_id):
     if Employees :
         Employees.delete()
         return redirect('employees')  
-          
+
+def update_employee(request, employee_id):
+    employees = get_object_or_404(Employee, pk=employee_id)
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance=employees)
+        if form.is_valid():
+            form.save()
+            return redirect('employees')
+
+    else:
+        form = employeeForm(instance=employees)
+
+    return render(request, 'employees/update_employee.htm', {'form': form})
+
+
 def product_list(request):
     products = Product.objects.all()
     return render(request, 'product/product.htm', {'products': products})

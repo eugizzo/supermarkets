@@ -47,7 +47,7 @@
           
           <td>
             <a href="{% url 'delete_employee' employee.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
-            <a href="#" class="btn btn-success edit-product" data-product-id="{{ product.id }}">Edit</a>
+            <a href="{% url 'update_employee' employee.id %}" class="btn btn-success edit-product" data-product-id="{{ product.id }}">Edit</a>
         </td>
         </tr>
         {% endfor %}
@@ -168,7 +168,7 @@
             <input type="email" id="email" name="email" placeholder="Email" required>
 
             
-            <input type="text" id="password" name="phone" required>
+            <input type="text" id="password" name="phone" placeholder="phone number">
 
 
             <input type="password" id="confirmPassword" name="password" placeholder="Password" required>

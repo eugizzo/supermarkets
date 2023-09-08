@@ -97,31 +97,32 @@
         >
           <div class="sb-sidenav-menu">
             <div class="nav " style="padding-top: 14px;">
-              <a class="nav-link" href="" style="color: white">
+              <a class="nav-link" href="{% url 'home' %}" style="color: white">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-tachometer-alt"></i>
                 </div>
                 Dashboard
               </a>
-              <a class="nav-link" href="dashboard/" style="color: white">
+              <a class="nav-link" href="{% url 'category' %}" style="color: white">
                 <div class="sb-nav-link-icon">
-                  <i class="fas fa-category-alt"></i>
+                  <i class="fa fa-grid"></i>
                 </div>
                 Categories
               </a>
-              <a class="nav-link" href="employees/" style="color: white">
+              <a class="nav-link" href="{% url 'employees' %}" style="color: white">
                 <div class="sb-nav-link-icon">
-                  <i class="fas fa-category-alt"></i>
+                  <i class="fas fa-user"></i>
+
                 </div>
                 Employees
               </a>
-              <a class="nav-link" href="supply/" style="color: white">
+              <a class="nav-link" href="{% url 'supply' %}" style="color: white">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-category-alt"></i>
                 </div>
                 Supplies
               </a>
-              <a class="nav-link" href="category" style="color: white">
+              <a class="nav-link" href="#" style="color: white">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-category-alt"></i>
                 </div>
@@ -130,7 +131,7 @@
            
               <a
                 class="nav-link collapsed"
-                href="product"
+                href="{% url 'products' %}"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseLayouts"
                 aria-expanded="false"
@@ -138,7 +139,7 @@
                 style="color: white"
               >
                 <div class="sb-nav-link-icon">
-                  <i class="fas fa-columns"></i>
+                  <i class="fas fa-shopping-cart"></i>
                 </div>
                 Products
                 <div class="sb-sidenav-collapse-arrow">
@@ -154,13 +155,13 @@
                 <nav class="sb-sidenav-menu-nested nav">
                   <a
                     class="nav-link"
-                    href="layout-static.html"
+                    href="{% url 'products' %}"
                     style="color: white"
                     >Add product</a
                   >
                   <a
                     class="nav-link"
-                    href="layout-sidenav-light.html"
+                    href="{% url 'products' %}"
                     style="color: white"
                     >Product List</a
                   >
