@@ -1,0 +1,228 @@
+
+{% extends '../base/sidebar.htm' %} 
+
+{% block menu %} Products {% endblock %}
+
+{% block contents%}
+
+
+
+<div class="container-fluid px-4 mt-5">
+   
+   
+    <div class="card mb-4 ">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Products
+
+            <div style="display: flex; justify-content: end; align-items: center;">
+                <a href="#" ><button type="button" class="btn  btn-block mb-1 text-white " style="background-color :#f08024; font-weight: bold;" id="show-popup">
+                    <i class="fas fa-plus me-1"></i>
+                    Add product
+                  </button></a></div>
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>product name</th>
+                        <th>price</th>
+                        <th>quantity</th>
+                        <th>category</th>
+                        <th>Start date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>product name</th>
+                        <th>price</th>
+                        <th>quantity</th>
+                        <th>category</th>
+                        <th>Start date</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.price }} $</td>
+                        <td>{{ product.quantity }}</td>
+                        <td ><a href=""><p class="text-success">{{ product.category_id }}</p></a></td>
+                        <td>2011/04/25</td>
+                        <td>
+                            
+                            <a href="{% url 'delete_product' product.id %}"><button type="button" class="btn btn-danger ">Delete</button></a>
+                            <!-- <a href=""><button type="button" class="btn btn-success">Edit</button></a> -->
+                            <a href="{% url 'update_product' product.id %}" class="btn btn-primary">Edit</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                   
+               
+                 
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+    <style>
+        /* Styling for the overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        /* Styling for the pop-up container */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        /* Styling for the close button */
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+
+
+     
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #f08024;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- The overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- The pop-up form -->
+    <div class="container popup" id="popup">
+        <span class="popup-close" id="popup-close">&times;</span>
+        <h2>Add product</h2>
+        <form action="" method="POST" autocomplete="false" enctype="multipart/form-data"> {% csrf_token %} 
+          
+        
+            <input type="text" id="product_name" name="product_name" placeholder="Product Name" required>
+            
+            <input type="text" id="price" name="price" placeholder="price unit"  required>
+           <input type="text" id="price" name="quantity" placeholder="enter quantity" required>
+            
+            <select id="category" name="category" class="p-2 " required>
+                <option value="" selected disabled>Select cotegory</option>
+                {% for category in categories %}
+                    <option class="pt-3" value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            
+            <select id="employee" name="employee" class="p-2 mt-2"  required>
+                <option value="" selected disabled>Select employee</option>
+                {% for employee in employees %}
+                    <option value="{{ employee.id }}">{{ employee.name }}</option>
+                {% endfor %}
+            </select>
+           
+            <select id="supply" class="p-2 mt-2" name="supply" required>
+                <option value="" selected disabled>Select Supply</option>
+                {% for supply in supplies %}
+                    <option value="{{ supply.id }}">{{ supply.name }}</option>
+                {% endfor %}
+            </select><br>
+            <!-- <input type="file"  name="image" accept="image/*"  required> -->
+            <input type="submit" value="Add">
+        </form>
+    </div>
+
+    
+    <script>
+        // Get references to the overlay and pop-up
+        var overlay = document.getElementById('overlay');
+        var popup = document.getElementById('popup');
+
+        // Get references to the show and close buttons
+        var showPopupButton = document.getElementById('show-popup');
+        var closePopupButton = document.getElementById('popup-close');
+
+        // Show the pop-up form when the show button is clicked
+        showPopupButton.addEventListener('click', function() {
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+        });
+
+        // Close the pop-up form when the close button is clicked
+        closePopupButton.addEventListener('click', function() {
+            overlay.style.display = 'none';
+            popup.style.display = 'none';
+        });
+    </script>
+
+
+
+
+{%endblock%}

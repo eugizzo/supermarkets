@@ -1,0 +1,14 @@
+{% extends '../base/sidebar.htm' %} 
+
+{% block menu %} Products {% endblock %}
+
+{% block contents%}
+
+
+    <h1></h1>
+    <p>Are you sure you want to delete {{ product.name }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+  {%endblock%}

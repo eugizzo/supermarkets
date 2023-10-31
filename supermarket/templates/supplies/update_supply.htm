@@ -1,0 +1,17 @@
+{% extends '../base/sidebar.htm' %} 
+
+{% block menu %} update supply {% endblock %}
+
+{% block contents%}
+
+            <div class="modal-body">
+                <!-- Your Edit Form Goes Here -->
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+       
+            {%endblock%}
+

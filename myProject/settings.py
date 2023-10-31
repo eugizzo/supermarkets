@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -84,6 +84,13 @@ DATABASES = {
         'PORT':'5430'
     
     }}
+database_url=os.environ.get("DATABASE_URL")
+DATABASES['default']= dj_database_url.parse(database_url)
+#postgres://supermarket_db_96xf_user:7Gim95C0UiOufEhIwEXd3CJ7sQ2zgJex@dpg-cl0coo3jdq6s73boqvng-a.oregon-postgres.render.com/supermarket_db_96xf
+
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -131,7 +138,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = (
     
     os.path.join(BASE_DIR, 'static'),)
-
-
 # Default storage backend (local filesystem)
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
