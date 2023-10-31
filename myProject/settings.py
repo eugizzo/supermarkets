@@ -87,9 +87,6 @@ DATABASE_URL=os.environ.get("DATABASE_URL")
 DATABASES['default']= dj_database_url.parse(DATABASE_URL)
 #postgres://supermarket_db_96xf_user:7Gim95C0UiOufEhIwEXd3CJ7sQ2zgJex@dpg-cl0coo3jdq6s73boqvng-a.oregon-postgres.render.com/supermarket_db_96xf
 
-# DATABASES['default']= dj_database_url.parse("postgres://supermarket_db_96xf_user:7Gim95C0UiOufEhIwEXd3CJ7sQ2zgJex@dpg-cl0coo3jdq6s73boqvng-a.oregon-postgres.render.com/supermarket_db_96xf")
-#postgres://supermarket_db_96xf_user:7Gim95C0UiOufEhIwEXd3CJ7sQ2zgJex@dpg-cl0coo3jdq6s73boqvng-a.oregon-postgres.render.com/supermarket_db_96xf
-
 
 
 
