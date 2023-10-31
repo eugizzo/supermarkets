@@ -20,8 +20,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure--%!coshrpl4mi38g41so@cr%1xu)ud8bib-ajv*n8#kp!(5xno'
-
 SECRET_KEY =os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -89,6 +87,9 @@ DATABASE_URL=os.environ.get("DATABASE_URL")
 DATABASES['default']= dj_database_url.parse(DATABASE_URL)
 #postgres://supermarket_db_96xf_user:7Gim95C0UiOufEhIwEXd3CJ7sQ2zgJex@dpg-cl0coo3jdq6s73boqvng-a.oregon-postgres.render.com/supermarket_db_96xf
 
+# DATABASES['default']= dj_database_url.parse("postgres://supermarket_db_96xf_user:7Gim95C0UiOufEhIwEXd3CJ7sQ2zgJex@dpg-cl0coo3jdq6s73boqvng-a.oregon-postgres.render.com/supermarket_db_96xf")
+#postgres://supermarket_db_96xf_user:7Gim95C0UiOufEhIwEXd3CJ7sQ2zgJex@dpg-cl0coo3jdq6s73boqvng-a.oregon-postgres.render.com/supermarket_db_96xf
+
 
 
 
@@ -136,8 +137,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATICFILES_DIRS = (
-    
-    os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Default storage backend (local filesystem)
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
